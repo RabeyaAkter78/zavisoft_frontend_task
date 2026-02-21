@@ -1,3 +1,5 @@
+import Hero from "@/components/PageComponents/hero";
+
 export default function Home() {
   return (
     <div className="container mx-auto px-5 xl:px-0">
@@ -5,6 +7,7 @@ export default function Home() {
         <span className="text-black">DO IT </span>
         <span className=" text-[#4F46E5]">RIGHT</span>
       </h1>
+      <Hero/>
     </div>
   );
 }
