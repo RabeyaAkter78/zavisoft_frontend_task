@@ -1,4 +1,5 @@
-import Hero from "@/components/PageComponents/hero";
+import Hero from "@/components/PageComponents/Hero";
+import NewDrops from "@/components/PageComponents/NewDrops";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
         <span className=" text-[#4F46E5]">RIGHT</span>
       </h1>
       <Hero/>
+      <NewDrops/>
     </div>
   );
 }

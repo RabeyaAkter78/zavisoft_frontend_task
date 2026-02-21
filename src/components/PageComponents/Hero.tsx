@@ -19,7 +19,7 @@ const Hero = () => {
       className="relative w-full h-[500px] sm:h-[600px] md:h-[700px] bg-cover bg-center rounded-3xl p-6 sm:p-8 flex items-end transition-all duration-500 ease-in-out"
       style={{ backgroundImage: `url(${currentBg.src})` }}
     >
-      <div className="absolute top-2 left-2 sm:top-1/2 sm:left-0 sm:-translate-y-1/2 sm:-rotate-90 origin-top-left bg-black text-white px-2 py-1 rounded-b-md text-xs sm:text-sm">
+      <div className="absolute top-1/2 left-0 -translate-y-1/2 -rotate-90 origin-top-left bg-black text-white px-2 py-1 rounded-b-md text-xs sm:text-sm">
         Nike product of the year
       </div>
 
@@ -35,11 +35,11 @@ const Hero = () => {
         </button>
       </div>
 
-      <div className="absolute right-2 bottom-2 sm:bottom-10 sm:right-10 flex sm:flex-col gap-2 sm:gap-4">
+      <div className="absolute right-2 bottom-2 sm:bottom-10 sm:right-10 flex flex-col gap-2 sm:gap-4">
         {[subHero1, subHero2].map((img, idx) => (
           <div
             key={idx}
-            className="h-12 w-12 sm:w-40 sm:h-40 rounded-md sm:rounded-2xl overflow-hidden relative cursor-pointer ring-2 ring-white ring-offset-2 ring-offset-transparent hover:ring-offset-white transition-all duration-300"
+            className="h-12 w-12 sm:w-40 sm:h-40 rounded-2xl overflow-hidden relative cursor-pointer ring-2 ring-white ring-offset-2 ring-offset-transparent hover:ring-offset-white transition-all duration-300"
             onClick={() => handleSubImageClick(img)}
           >
             <Image
