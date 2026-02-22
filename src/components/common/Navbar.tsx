@@ -7,6 +7,7 @@ import { IoSearch } from "react-icons/io5";
 import { FaUser } from "react-icons/fa";
 import { Drawer, Button, Space } from "antd";
 import { MenuOutlined } from "@ant-design/icons";
+import Link from "next/link";
 const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -24,7 +25,7 @@ const Navbar = () => {
       <div className="bg-white rounded-3xl items-center justify-between px-8 py-8 mt-8 hidden lg:flex">
         <div className="flex items-center justify-between gap-10">
           <div className="flex items-center space-x-1">
-            <p className="text-lg">New Drops 🔥</p>
+            <Link href="/" className="text-lg ">New Drops 🔥</Link>
           </div>
           <div className="flex items-center space-x-1">
             <span className="text-lg">Men</span>

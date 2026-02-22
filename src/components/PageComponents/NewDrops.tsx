@@ -1,41 +1,69 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Image from "next/image";
-import nd1 from "../../assets/images/nd1.png";
-import nd2 from "../../assets/images/nd2.png";
-import nd3 from "../../assets/images/nd3.png";
-import nd4 from "../../assets/images/nd4.png";
+
 import Link from "next/link";
+import { useGetProductsQuery } from "@/redux/api/productsApi";
+interface Product {
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  category: {
+    id: number;
+    name: string;
+    image: string;
+  };
+  images: string[];
+  creationAt: string;
+  updatedAt: string;
+}
 
 const NewDrops = () => {
-  const products = [
-    {
-      id: 1,
-      image: nd1,
-      title: "ADIDAS 4DFWD X PARLEY RUNNING SHOES",
-      price: "$125",
-    },
-    {
-      id: 2,
-      image: nd2,
-      title: "ADIDAS 4DFWD X PARLEY RUNNING SHOES",
-      price: "$125",
-    },
-    {
-      id: 3,
-      image: nd3,
-      title: "ADIDAS 4DFWD X PARLEY RUNNING SHOES",
-      price: "$125",
-    },
-    {
-      id: 4,
-      image: nd4,
-      title: "ADIDAS 4DFWD X PARLEY RUNNING SHOES",
-      price: "$125",
-    },
-  ];
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(8);
+  const {
+    data: products,
+    isLoading,
+    error,
+    refetch,
+  } = useGetProductsQuery({ page, limit });
+  console.log("products", products);
+  const handlePageChange = (page: number) => {
+    setPage(page);
+  };
 
+  const paginatedProducts = products?.slice(0, 4);
+  // const totalItems = products.length;
+  if (isLoading) {
+    return (
+      <div className="container mx-auto px-4 py-16 my-[90px]">
+        <div className="flex justify-center items-center h-64">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#4a69e2]"></div>
+        </div>
+      </div>
+    );
+  }
 
+  if (error) {
+    return (
+      <div className="container mx-auto px-4 py-16 my-[90px]">
+        <div className="text-center">
+          <div className="text-red-500 text-xl mb-4">
+            Error: Failed to fetch products
+          </div>
+          <button
+            onClick={() => refetch()}
+            className="bg-[#4a69e2] text-white px-6 py-3 rounded-lg font-rubik font-medium hover:bg-blue-700 transition-colors duration-300"
+          >
+            Try Again
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto px-4 py-16 my-[90px]">
@@ -44,13 +72,15 @@ const NewDrops = () => {
           DON'T MISS OUT <br />
           NEW DROPS
         </h2>
-        <button className="bg-[#4a69e2] text-white px-6 py-3 rounded-lg font-rubik font-medium hover:bg-blue-700 transition-colors duration-300">
-          SHOP NEW DROPS
-        </button>
+        <Link href="/products">
+          <button className="bg-[#4a69e2] text-white px-6 py-3 rounded-lg font-rubik font-medium hover:bg-blue-700 transition-colors duration-300">
+            SHOP NEW DROPS
+          </button>
+        </Link>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {products.map((product) => (
+        {paginatedProducts.map((product: Product) => (
           <div
             key={product.id}
             className="relative transform hover:scale-105 transition-transform duration-300 ease-in-out"
@@ -60,13 +90,13 @@ const NewDrops = () => {
                 New
               </span>
 
-              <div className="relative transition-transform duration-500 ease-in-out hover:scale-110">
+              <div className="relative transition-transform duration-500 ease-in-out hover:scale-110 rounded-xl">
                 <Image
-                  src={product.image}
+                  src={product.images[0]}
                   alt={product.title}
                   width={300}
                   height={200}
-                  className="object-contain"
+                  className="object-contain rounded-xl"
                 />
               </div>
             </div>

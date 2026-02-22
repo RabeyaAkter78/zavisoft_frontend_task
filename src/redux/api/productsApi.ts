@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const productsApi = createApi({
@@ -18,5 +17,4 @@ export const productsApi = createApi({
   }),
 });
 
-// Export the auto-generated hook for the entire API slice
 export const { useGetProductsQuery } = productsApi;

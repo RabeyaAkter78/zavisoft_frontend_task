@@ -123,7 +123,7 @@ const Products = () => {
       <div className="flex justify-center mt-12">
         <Pagination
           current={page}
-          total={products?.length || 0} // Use total number of products from API
+          total={products?.length || 0} 
           pageSize={limit}
           onChange={handlePageChange}
           showSizeChanger={false}
