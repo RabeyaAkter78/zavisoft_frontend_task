@@ -5,6 +5,7 @@ import nd1 from "../../assets/images/nd1.png";
 import nd2 from "../../assets/images/nd2.png";
 import nd3 from "../../assets/images/nd3.png";
 import nd4 from "../../assets/images/nd4.png";
+import Link from "next/link";
 
 const NewDrops = () => {
   const products = [
@@ -33,6 +34,8 @@ const NewDrops = () => {
       price: "$125",
     },
   ];
+
+
 
   return (
     <div className="container mx-auto px-4 py-16 my-[90px]">
@@ -71,10 +74,12 @@ const NewDrops = () => {
               <h3 className="text-sm md:text-base font-semibold text-gray-900 my-4">
                 {product.title}
               </h3>
-              <button className="bg-black text-white w-full py-3 rounded-lg font-rubik font-medium hover:bg-gray-800 transition-colors duration-300">
-                VIEW PRODUCT -{" "}
-                <span className="text-yellow-600">{product.price}</span>
-              </button>
+              <Link href={`/product/${product.id}`}>
+                <button className="bg-black text-white w-full py-3 rounded-lg font-rubik font-medium hover:bg-gray-800 transition-colors duration-300">
+                  VIEW PRODUCT -{" "}
+                  <span className="text-yellow-600">{product.price}</span>
+                </button>
+              </Link>
             </div>
           </div>
         ))}

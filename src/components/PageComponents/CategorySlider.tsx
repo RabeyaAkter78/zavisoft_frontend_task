@@ -13,7 +13,10 @@ const CategorySlider = () => {
   ];
 
   const itemsPerPage = 2;
-  const totalPages = Math.ceil(categories.length / itemsPerPage);
+  const totalPages = categories.length
+  ? Math.ceil(categories.length / itemsPerPage)
+  : 0;
+  // const totalPages = Math.ceil(categories.length / itemsPerPage);
 
   const [currentPage, setCurrentPage] = useState(0);
 

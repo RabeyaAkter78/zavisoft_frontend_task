@@ -3,9 +3,11 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Rubik } from "next/font/google";
 
+
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
+import ReduxProviders from "@/providers/ReduxProvider";
 const rubik = Rubik({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
@@ -32,13 +34,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${rubik.variable} antialiased`}
-      >
-        <Navbar></Navbar>
-        <AntdRegistry>{children}</AntdRegistry>
-        <Footer></Footer>
+       suppressHydrationWarning>
+        <ReduxProviders >
+          <Navbar></Navbar>
+          <AntdRegistry>{children}</AntdRegistry>
+          <Footer></Footer>
+        </ReduxProviders>
       </body>
     </html>
   );
