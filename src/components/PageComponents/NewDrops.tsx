@@ -22,21 +22,17 @@ interface Product {
 }
 
 const NewDrops = () => {
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(8);
+
   const {
     data: products,
     isLoading,
     error,
     refetch,
-  } = useGetProductsQuery({ page, limit });
-  console.log("products", products);
-  const handlePageChange = (page: number) => {
-    setPage(page);
-  };
+  } = useGetProductsQuery({});
+  // console.log("products", products);
+
 
   const paginatedProducts = products?.slice(0, 4);
-  // const totalItems = products.length;
   if (isLoading) {
     return (
       <div className="container mx-auto px-4 py-16 my-[90px]">
@@ -51,9 +47,7 @@ const NewDrops = () => {
     return (
       <div className="container mx-auto px-4 py-16 my-[90px]">
         <div className="text-center">
-          <div className="text-red-500 text-xl mb-4">
-            Error: Failed to fetch products
-          </div>
+          <div className="text-red-500 text-xl mb-4">Something went wrong</div>
           <button
             onClick={() => refetch()}
             className="bg-[#4a69e2] text-white px-6 py-3 rounded-lg font-rubik font-medium hover:bg-blue-700 transition-colors duration-300"
@@ -72,7 +66,7 @@ const NewDrops = () => {
           DON'T MISS OUT <br />
           NEW DROPS
         </h2>
-        <Link href="/products">
+        <Link href="/product">
           <button className="bg-[#4a69e2] text-white px-6 py-3 rounded-lg font-rubik font-medium hover:bg-blue-700 transition-colors duration-300">
             SHOP NEW DROPS
           </button>
