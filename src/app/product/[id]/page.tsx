@@ -7,6 +7,8 @@ import {
   StaticImageData,
   StaticImport,
 } from "next/dist/shared/lib/get-img-props";
+import { FaHeart } from "react-icons/fa";
+import { CiHeart } from "react-icons/ci";
 
 const ProductDetails = () => {
   const params = useParams();
@@ -185,9 +187,14 @@ const ProductDetails = () => {
           </div>
 
           <div className="mt-8 space-y-4">
-            <button className="w-full bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition-all">
-              ADD TO CART
-            </button>
+            <div className="flex items-center justify-between gap-2">
+              <button className="w-full bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition-all">
+                ADD TO CART
+              </button>
+              <button className="px-4 bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition-all">
+                <CiHeart className="text-2xl cursor-pointer" />
+              </button>
+            </div>
 
             <button className="w-full bg-[#4d6cdc] text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all">
               BUY IT NOW
@@ -195,14 +202,14 @@ const ProductDetails = () => {
           </div>
 
           {/* ABOUT PRODUCT */}
-          <div className="mt-8 text-sm text-gray-600 space-y-3">
+          <div className="mt-8 text-gray-600 space-y-3 font-rubik">
             <h3 className="font-semibold text-black">ABOUT THE PRODUCT</h3>
             <p>{product.description}</p>
             <p>
               This product is excluded from all promotional discounts and
               offers.
             </p>
-            <ul className="list-disc pl-5 space-y-1">
+            <ul className="list-disc pl-5 space-y-1 ml-5 ">
               <li>
                 Pay over time in interest-free installments with Affirm, Klarna
                 or Afterpay.
