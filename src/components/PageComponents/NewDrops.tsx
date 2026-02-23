@@ -61,13 +61,13 @@ const NewDrops = () => {
 
   return (
     <div className="container mx-auto px-4 py-16 my-[90px]">
-      <div className="flex flex-col md:flex-row justify-between items-center mb-12">
-        <h2 className="text-4xl md:text-7xl font-semibold font-rubik text-gray-900 mb-4 md:mb-0">
+      <div className="flex justify-between items-center mb-12">
+        <h2 className="text-xl md:text-7xl font-semibold font-rubik text-gray-900 mb-4 md:mb-0">
           DON'T MISS OUT <br />
           NEW DROPS
         </h2>
         <Link href="/product">
-          <button className="bg-[#4a69e2] text-white px-6 py-3 rounded-lg font-rubik font-medium hover:bg-blue-700 transition-colors duration-300">
+          <button className="bg-[#4a69e2] text-white px-3 md:px-6 py-3 rounded-lg font-rubik font-medium hover:bg-blue-700 transition-colors duration-300">
             SHOP NEW DROPS
           </button>
         </Link>
