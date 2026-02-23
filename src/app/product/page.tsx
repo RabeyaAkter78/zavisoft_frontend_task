@@ -35,7 +35,7 @@ const Products = () => {
     error,
     refetch,
   } = useGetProductsQuery({ page, limit });
-  console.log("products", products);
+  // console.log("products", products);
   const handlePageChange = (page: number) => {
     setPage(page);
   };

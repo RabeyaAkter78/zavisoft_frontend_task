@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
@@ -6,7 +7,7 @@ import { useGetProductByCategoryQuery } from "@/redux/api/productsApi";
 
 const CategorySlider = () => {
   const { data: catData, isLoading } = useGetProductByCategoryQuery({});
-  console.log("catData", catData);
+  // console.log("catData", catData);
   const categories = catData || [];
 
   const itemsPerPage = 2;
@@ -69,7 +70,7 @@ const CategorySlider = () => {
                 transform: `translateX(-${currentPage * 100}%)`,
               }}
             >
-              {categories?.map((category, pageIndex) => (
+              {categories?.map((category:any, pageIndex: number) => (
                 <div
                   key={pageIndex}
                   className="min-w-full flex flex-col md:flex-row justify-between items-center"
@@ -79,13 +80,13 @@ const CategorySlider = () => {
                       pageIndex * itemsPerPage,
                       pageIndex * itemsPerPage + itemsPerPage,
                     )
-                    .map((category) => (
+                    .map((category: { id: React.Key | null | undefined; image: string ; name: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; }) => (
                       <div key={category.id} className="relative">
                         {/* Image */}
                         <div className="relative  flex items-center justify-center ">
                           <Image
                             src={category.image}
-                            alt={category.name}
+                            alt="category"
                             width={690}
                             height={600}
                             className="object-contain w-full h-full"
