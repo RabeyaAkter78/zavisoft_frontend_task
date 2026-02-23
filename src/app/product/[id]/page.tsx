@@ -7,8 +7,8 @@ import {
   StaticImageData,
   StaticImport,
 } from "next/dist/shared/lib/get-img-props";
-import { FaHeart } from "react-icons/fa";
 import { CiHeart } from "react-icons/ci";
+import Link from "next/link";
 
 const ProductDetails = () => {
   const params = useParams();
@@ -188,9 +188,11 @@ const ProductDetails = () => {
 
           <div className="mt-8 space-y-4">
             <div className="flex items-center justify-between gap-2">
-              <button className="w-full bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition-all">
-                ADD TO CART
-              </button>
+              <Link href="/cart" className="w-full bg-black text-white py-3 rounded-lg text-center ">
+                <button className=" font-semibold hover:bg-gray-800 transition-all">
+                  ADD TO CART
+                </button>
+              </Link>
               <button className="px-4 bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition-all">
                 <CiHeart className="text-2xl cursor-pointer" />
               </button>

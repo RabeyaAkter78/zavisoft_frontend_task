@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { MdArrowDropDown } from "react-icons/md";
-import logo from "../../assets/images/Logo (1).png";
+import logo from "../../assets/images/logo.png";
 import Image from "next/image";
 import { IoSearch } from "react-icons/io5";
 import { FaUser } from "react-icons/fa";
