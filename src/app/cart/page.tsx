@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 import React from "react";
 import Link from "next/link";
@@ -8,18 +9,13 @@ import { Button, InputNumber } from "antd";
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const { items, total, itemCount } = useSelector((state: RootState) => state.cart);
+  const { items, total, itemCount } = useSelector((state: RootState) => state?.cart);
 
   const handleRemoveItem = (id: number, size?: number, color?: string) => {
     dispatch(removeFromCart({ id, size, color }));
   };
 
-  const handleUpdateQuantity = (
-    id: number,
-    quantity: number,
-    size?: number,
-    color?: string
-  ) => {
+  const handleUpdateQuantity = (id: number, quantity: number, size?: number, color?: string) => {
     dispatch(updateQuantity({ id, quantity, size, color }));
   };
 
@@ -53,11 +49,7 @@ const Cart = () => {
               Looks like you haven't added anything to your cart yet
             </p>
             <Link href="/product">
-              <Button
-                type="primary"
-                size="large"
-                className="bg-blue-600 hover:bg-blue-700"
-              >
+              <Button type="primary" size="large" className="bg-blue-600 hover:bg-blue-700">
                 Continue Shopping
               </Button>
             </Link>
@@ -68,33 +60,21 @@ const Cart = () => {
   }
 
   return (
-    <div className="container mx-auto bg-background p-6 md:p-12">
-      <h1 className="text-2xl font-bold mb-2">Saving to celebrate</h1>
-      <p className="text-gray-600 mb-6">
-        Enjoy up to 60% off thousands of styles during End of Year sale -
-        while supplies last. No code needed.{" "}
-        <span className="underline cursor-pointer">Join us</span> or{" "}
-        <span className="underline cursor-pointer">Sign-in</span>
-      </p>
-
+    <div className="container mx-auto bg-gray-50 p-6 md:p-12">
+      <h1 className="text-2xl font-bold mb-2">Your Shopping Cart</h1>
       <div className="md:flex md:space-x-8">
-        {/* Your Bag */}
+        {/* Cart Items */}
         <div className="flex-1 bg-white p-6 rounded-lg shadow-md mb-6 md:mb-0">
           <h2 className="text-xl font-bold mb-4">Your Bag</h2>
           <p className="text-gray-500 mb-4">
-            Items in your bag not reserved - check out now to make them yours.
+            Items in your bag are not reserved — checkout now to secure them.
           </p>
 
-          {/* Cart Items */}
           <div className="space-y-4">
             {items.map((item) => (
               <div key={`${item.id}-${item.size}-${item.color}`} className="border border-gray-300 rounded-lg p-4">
                 <div className="flex items-center space-x-4">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-24 h-24 object-contain"
-                  />
+                  <img src={item.image} alt={item.title} className="w-24 h-24 object-contain" />
                   <div className="flex-1">
                     <h3 className="font-bold text-lg">{item.title}</h3>
                     <p className="text-gray-600 text-sm">{item.description}</p>
@@ -114,12 +94,7 @@ const Cart = () => {
                           max={99}
                           value={item.quantity}
                           onChange={(value) =>
-                            handleUpdateQuantity(
-                              item.id,
-                              value || 1,
-                              item.size,
-                              item.color
-                            )
+                            handleUpdateQuantity(item.id, value || 1, item.size, item.color)
                           }
                           className="w-20"
                         />
@@ -129,9 +104,7 @@ const Cart = () => {
                           ${(item.price * item.quantity).toFixed(2)}
                         </div>
                         <button
-                          onClick={() =>
-                            handleRemoveItem(item.id, item.size, item.color)
-                          }
+                          onClick={() => handleRemoveItem(item.id, item.size, item.color)}
                           className="text-red-500 hover:text-red-600 text-sm mt-1"
                         >
                           Remove
@@ -140,71 +113,30 @@ const Cart = () => {
                     </div>
                   </div>
                 </div>
-                  value={size}
-                  onChange={(e) => setSize(Number(e.target.value))}
-                  className="border border-gray-300 rounded p-1"
-                >
-                  {product.sizes.map((s) => (
-                    <option key={s} value={s}>
-                      Size {s}
-                    </option>
-                  ))}
-                </select>
-
-                {/* Quantity Dropdown */}
-                <select
-                  value={quantity}
-                  onChange={(e) => setQuantity(Number(e.target.value))}
-                  className="border border-gray-300 rounded p-1"
-                >
-                  {product.quantities.map((q) => (
-                    <option key={q} value={q}>
-                      Qty {q}
-                    </option>
-                  ))}
-                </select>
               </div>
+            ))}
+          </div>
 
-              <p className="text-blue-600 font-bold mt-2">
-                ${product.price.toFixed(2)}
-              </p>
-
-              {/* Icons */}
-              <div className="flex space-x-2 mt-2 text-gray-500">
-                <button aria-label="Add to wishlist">❤️</button>
-                <button aria-label="Remove from bag">🗑️</button>
-              </div>
-            </div>
+          <div className="mt-6 flex justify-between items-center">
+            <Button danger onClick={handleClearCart}>
+              Clear Cart
+            </Button>
+            <div className="font-bold text-lg">Total: ${total.toFixed(2)}</div>
           </div>
         </div>
 
         {/* Order Summary */}
         <div className="w-full md:w-1/3 bg-white p-6 rounded-lg shadow-md">
           <h2 className="text-xl font-bold mb-4">Order Summary</h2>
-
           <div className="flex justify-between mb-2">
-            <span className="font-medium">{quantity} ITEM</span>
-            <span>${product.price.toFixed(2)}</span>
-          </div>
-          <div className="flex justify-between mb-2">
-            <span className="text-gray-600">Delivery</span>
-            <span>${delivery.toFixed(2)}</span>
-          </div>
-          <div className="flex justify-between mb-4">
-            <span className="text-gray-600">Sales Tax</span>
-            <span>-</span>
-          </div>
-          <div className="flex justify-between font-bold text-lg mb-4">
-            <span>Total</span>
+            <span className="font-medium">{itemCount} Items</span>
             <span>${total.toFixed(2)}</span>
           </div>
-
           <button className="w-full bg-black text-white p-3 rounded-lg mb-4 hover:bg-gray-900 transition">
-            CHECKOUT
+            Checkout
           </button>
-
           <p className="text-gray-600 underline text-center cursor-pointer">
-            User a promo code
+            Apply a promo code
           </p>
         </div>
       </div>

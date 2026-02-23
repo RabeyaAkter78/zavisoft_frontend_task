@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 import React, { useState } from "react";
-import bg from "../../assets/images/hero.png";
+import bg from "../../assets/images/bg.jpg";
 import subHero1 from "../../assets/images/subHero1.jpg";
 import subHero2 from "../../assets/images/subHero2.jpg";
 import Image from "next/image";

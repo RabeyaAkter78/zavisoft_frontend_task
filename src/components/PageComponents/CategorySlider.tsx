@@ -14,8 +14,8 @@ const CategorySlider = () => {
 
   const itemsPerPage = 2;
   const totalPages = categories.length
-  ? Math.ceil(categories.length / itemsPerPage)
-  : 0;
+    ? Math.ceil(categories.length / itemsPerPage)
+    : 0;
   // const totalPages = Math.ceil(categories.length / itemsPerPage);
 
   const [currentPage, setCurrentPage] = useState(0);
@@ -68,24 +68,17 @@ const CategorySlider = () => {
           }}
         >
           {Array.from({ length: totalPages }).map((_, pageIndex) => (
-            <div
-              key={pageIndex}
-              className="min-w-full flex"
-            >
+            <div key={pageIndex} className="min-w-full flex">
               {categories
                 .slice(
                   pageIndex * itemsPerPage,
-                  pageIndex * itemsPerPage + itemsPerPage
+                  pageIndex * itemsPerPage + itemsPerPage,
                 )
                 .map((category, index) => (
                   <div
                     key={category.id}
                     className={`w-1/2 relative bg-[#efefef] h-[420px] flex items-center justify-center p-10
-                    ${
-                      index === 0
-                        ? "rounded-l-[40px]"
-                        : "rounded-r-[40px]"
-                    }`}
+                    ${index === 0 ? "rounded-l-[40px]" : "rounded-r-[40px]"}`}
                   >
                     {/* Image */}
                     <div className="relative w-full h-64">
